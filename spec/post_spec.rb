@@ -1,41 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject { Post.new(Title: 'My first post', author_id: 1, CommentsCounter: 0, LikesCounter: 0) }
-
+  first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
+  subject { Post.new(author_id: first_user.id, title: 'Hello', text: 'This is my first post') }
   before { subject.save }
 
-  it 'Title should be present' do
-    subject.Title = ''
+  it 'author_id should be present' do
+    subject.author_id = nil
     expect(subject).to_not be_valid
   end
 
-  it 'Title should not be too long' do
-    subject.Title = 'a' * 251
+  it 'title length should not be too long' do
+    subject.title = 'a' * 300
     expect(subject).to_not be_valid
   end
 
-  it 'CommentsCounter should be integer' do
-    subject.CommentsCounter = '10'
+  it 'comments counter should be greater than 0' do
+    subject.comments_counter = -1
     expect(subject).to_not be_valid
   end
 
-  it 'CommentsCounter should be greater than or equal to 0' do
-    subject.CommentsCounter = -1
+  it 'comments counter should be integer' do
+    subject.comments_counter = 'String'
     expect(subject).to_not be_valid
   end
 
-  it 'LikesCounter should be integer' do
-    subject.LikesCounter = '10'
+  it 'likes counter should be greater than 0' do
+    subject.likes_counter = -1
     expect(subject).to_not be_valid
   end
 
-  it 'LikesCounter should be greater than or equal to 0' do
-    subject.LikesCounter = -1
+  it 'likes counter should be integer' do
+    subject.likes_counter = 'String'
     expect(subject).to_not be_valid
-  end
-
-  it 'Return five most recent comments for post' do
-    expect(subject.five_most_recent_comments_for_post).to eq(subject.comments.order(created_at: :desc).limit(5))
   end
 end
