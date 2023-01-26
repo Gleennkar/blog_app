@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
 
   validates :title, presence: true, length: { maxmium: 250 }
-  validates :comments_counter, numerciality: { greater_than_or_equal_to: 0, only_integer: true }
-  validates :likes_counter, numerciality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :comments_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :likes_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
   after_save :update_posts_counter_for_user
 
