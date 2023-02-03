@@ -1,21 +1,5 @@
-<div class="container">
-    <h1>Posts Detail</h1>
-    <div class="post-detail">
-        <div class="post-head">
-            <h5>Post <%=@post.id %> <%= @post.title %> <% 'by' %> <%= @user.name %> </h5>
-            <ul>
-                <li>Comments: <%= @post.Comments_counter || 0 %> </li>
-                <li>Likes: <%= @post.Likes_counter || 0 %> </li>
-            </ul>
-        </div>
-        <div class="post-body">
-            <p><%= @post.text %></p>
-        </div>
-    </div>
-    <div class="comments">
-        <% @post.comments.order(created_at: :desc).each do |comment| %>
-            <%= render partial: "/shared/comment", locals: { comment: comment } %>
-        <% end %>
-    </div>
-</div>
+<h1>Posts#show</h1>
+<p>Find me in app/views/posts/show.html.erb</p>
+
+<p>The Post and all the Comments about it</p>
 

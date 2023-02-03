@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  layout 'application'
   def index
-    @users = User.all
+    @users = User.all.order(:name).reverse_order
   end
 
   def show
-    @user = User.find(params[:id])
+    params[:user_id]
   end
 end
