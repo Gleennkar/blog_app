@@ -64,6 +64,12 @@ In order to run this project you need:
 - Twitter: [@gleeny24](https://twitter.com/twitterhandle)
 - LinkedIn: [@gleeny](https://www.linkedin.com/in/gleeny-nkar-aa3917182)
 
+👤 **Lucca Micale**
+
+- GitHub: [@luccamicale](https://github.com/luccamicale)
+- LinkedIn: [luccamicale](https://www.linkedin.com/in/luccamicale/)
+- Twitter: [@luccamicale_](https://twitter.com/LuccaMicale_)
+
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
