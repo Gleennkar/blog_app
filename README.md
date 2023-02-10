@@ -50,7 +50,9 @@
 
 In order to run this project you need:
 
-- You need to have ruby on rails installed in your computer.
+- Install Ruby
+- Install PostgreSQL
+- Instal Rails gem
 
 ### Setup
 ```
@@ -101,6 +103,6 @@ I would like to thank to the code reviewers and my partners who are helping all 
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed. 
+This project is [MIT](https://github.com/Gleennkar/blog_app/LICENSE) licensed. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
