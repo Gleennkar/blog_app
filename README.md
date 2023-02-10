@@ -44,7 +44,7 @@
 - install gems bundle i
 - setup database rails db:setup 
 - run rails server rails s.
-
+- rails c
 
 ### Prerequisites
 
