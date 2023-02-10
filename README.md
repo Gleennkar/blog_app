@@ -56,8 +56,16 @@ In order to run this project you need:
 
 ### Setup
 ```
-- To clone the repository run this command - "https://github.com/Gleennkar/My_Blog.git"
-- cd blog-app
+- To clone the repository run this command:
+
+ `git clone https://github.com/Gleennkar/blog_app.git`
+
+
+
+- To access the cloned directory run:
+
+  `cd blog_app`
+
 ```
 ## 👥 Authors <a name="authors"></a>
 
@@ -103,6 +111,6 @@ I would like to thank to the code reviewers and my partners who are helping all 
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/Gleennkar/blog_app/LICENSE) licensed. 
+This project is [MIT](https://github.com/Gleennkar/blog_app/MIT.md) licensed. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
