@@ -5,8 +5,8 @@ ruby '3.1.3'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 gem 'devise'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -80,7 +80,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-    gem 'rails-controller-testing'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end

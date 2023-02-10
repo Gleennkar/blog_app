@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Post index page', type: :feature do
   describe 'Post index page process' do
     before(:each) do
-      @user = User.create(name: 'lola', photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg', bio: 'I am a biology teacher',
-                          posts_counter: 1)
-      @user2 = User.create(name: 'lucas', photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg', bio: 'I am a math teacher',
-                           posts_counter: 0)
-      @first_post = Post.create(author: @user, title: 'My post', text: 'This is my first post',
-                                comments_counter: 0, likes_counter: 0)
+      @user = User.create(name: 'lola',
+                          photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg',
+                          bio: 'I am a biology teacher', posts_counter: 1)
+      @user2 = User.create(name: 'lucas',
+                           photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg',
+                           bio: 'I am a math teacher', posts_counter: 0)
+      @first_post = Post.create(author: @user, title: 'My post', text: 'This is my first post', comments_counter: 0,
+                                likes_counter: 0)
       Comment.create(post: @first_post, author: @user2, text: 'This the first post comment')
 
       visit user_posts_path(@user)
