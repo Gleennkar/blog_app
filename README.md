@@ -69,7 +69,7 @@ In order to run this project you need:
 - GitHub: [@luccamicale](https://github.com/luccamicale)
 - LinkedIn: [luccamicale](https://www.linkedin.com/in/luccamicale/)
 - Twitter: [@luccamicale_](https://twitter.com/LuccaMicale_)
-
+Gg
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
