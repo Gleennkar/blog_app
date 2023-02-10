@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   def index
     @user = User.includes(:posts, posts: [:comments, { comments: [:author] }]).find(params[:user_id])
+
   end
 
   def show
     @user = User.find(params[:user_id])
+    
     @post = Post.find(params[:id])
   end
 
@@ -19,6 +21,7 @@ class PostsController < ApplicationController
       redirect_to user_path(current_user.id)
     elsif @like.save
       redirect_to user_path(current_user), notice: 'like was successfully created.'
+
     else
       render :new
     end
@@ -27,6 +30,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :text).merge(author_id: current_user.id)
+    params.require(:post).permit(:title, :text).merge(author_id: current_user.i
+
   end
 end
