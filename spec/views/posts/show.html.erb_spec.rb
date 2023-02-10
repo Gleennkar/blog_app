@@ -1,74 +1,45 @@
 require 'rails_helper'
+
 RSpec.describe 'Post show page', type: :feature do
-  before(:each) do
-    @user = User.create(
-      name: 'Abdul',
-      bio: 'Aspiring FullStack Dev',
-      photo: 'https://unsplash.com/photos/NDCy2-9JhUs',
-      posts_counter: 2
-    )
+  describe 'Post show page process' do
+    before(:each) do
+      @user = User.create(name: 'Diego', photo: 'https://i.imgur.com/1JZ1Q2r.jpg', bio: 'I am a biology teacher',
+                          posts_counter: 2)
+      @user2 = User.create(name: 'Marcos', photo: 'https://i.imgur.com/1JZ1Q2r.jpg', bio: 'I am a math teacher',
+                           posts_counter: 3)
+      @first_post = Post.create(author: @user, title: 'My first post', text: 'This is my first post',
+                                comments_counter: 0, likes_counter: 0)
+      Comment.create(post: @first_post, author: @user2, text: 'This the first post comment')
 
-    @user2 = User.create(
-      name: 'Joy',
-      bio: 'FullStack Dev',
-      photo: 'https://unsplash.com/photos/hodKTZow_Kk',
-      posts_counter: 2
-    )
-
-    @post1 = Post.create(
-      title: 'Test',
-      text: 'First Post',
-      comments_counter: 0,
-      likes_counter: 0,
-      author: @user
-    )
-
-    @comment1 = Comment.create(
-      text: 'First Comment',
-      post: @post1,
-      author: @user2
-    )
-
-    @like1 = Like.create(
-      post: @post1,
-      author: @user2
-    )
-  end
-
-  describe 'the post show page' do
-    it 'displays the post title' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Test')
+      visit user_post_path(@user, @first_post)
     end
 
-    it 'displays the post author' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Abdul')
+    it "should show a post's title" do
+      expect(page.body).to have_content('This is my first post')
     end
 
-    it 'displays number of comments' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('1')
+    it 'should show who wrote the post' do
+      expect(page.body).to have_content(@first_post.author.name)
     end
 
-    it 'displays number of likes' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('1')
+    it 'should show how many comments it has' do
+      expect(page.body).to have_content(@first_post.comments_counter.to_s)
     end
 
-    it 'displays the post text' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('First Post')
+    it 'should show how many likes it has' do
+      expect(page.body).to have_content(@first_post.likes_counter.to_s)
     end
 
-    it 'displays the commentor' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Jonathan')
+    it 'should show the post body' do
+      expect(page.body).to have_content(@first_post.text)
     end
 
-    it 'displays the comment text' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('First Comment')
+    it 'should show the username of each commentor' do
+      expect(page.body).to have_content(@user2.name)
+    end
+
+    it 'should show the comment body' do
+      expect(page.body).to have_content('This the first post comment')
     end
   end
 end

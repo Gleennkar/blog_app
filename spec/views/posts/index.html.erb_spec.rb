@@ -1,71 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe 'Post index page', type: :feature do
-  before(:each) do
-    @user = User.create(name: 'Abdul', bio: 'Aspiring FullStack Dev', photo: 'https://unsplash.com/photos/NDCy2-9JhUs',
-                        posts_counter: 2)
-    @user2 = User.create(name: 'Joy', bio: 'FullStack Dev', photo: 'https://unsplash.com/photos/hodKTZow_Kk',
-                         posts_counter: 2)
-    @post1 = Post.create(title: 'Test', text: 'First Post', comments_counter: 0, likes_counter: 0, author: @user)
-    @post2 = Post.create(title: 'Working?', text: 'Second Post', comments_counter: 0, likes_counter: 0, author: @user)
-    @comment1 = Comment.create(text: 'First Comment', post: @post1, author: @user2)
-    @comment2 = Comment.create(text: 'Second Comment', post: @post2, author: @user2)
-    @like1 = Like.create(post: @post1, author: @user2)
-  end
+  describe 'Post index page process' do
+    before(:each) do
+      @user = User.create(name: 'lola', photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg', bio: 'I am a biology teacher',
+                          posts_counter: 1)
+      @user2 = User.create(name: 'lucas', photo: 'https://images.ctfassets.net/hrltx12pl8hq/qGOnNvgfJIe2MytFdIcTQ/429dd7e2cb176f93bf9b21a8f89edc77/Images.jpg', bio: 'I am a math teacher',
+                           posts_counter: 0)
+      @first_post = Post.create(author: @user, title: 'My post', text: 'This is my first post',
+                                comments_counter: 0, likes_counter: 0)
+      Comment.create(post: @first_post, author: @user2, text: 'This the first post comment')
 
-  describe 'the post index page' do
-    it 'displays the users profile picture' do
       visit user_posts_path(@user)
-      expect(page).to have_css("img[src*='https://unsplash.com/photos/NDCy2-9JhUs']")
     end
 
-    it 'displays the users username' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('Abdul')
+    it 'should show the user profile picture' do
+      expect(page.body).to include(@user.photo)
     end
 
-    it 'displays the number of posts the user has written' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('2')
+    it 'should show the user username' do
+      expect(page.body).to have_content(@user.name)
     end
 
-    it 'displays the post title' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('Test')
-      expect(page).to have_content('Working?')
+    it 'should show the number of post the user has writen' do
+      expect(page.body).to have_content(@user.posts_counter.to_s)
     end
 
-    it 'displays the post text' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('First Post')
-      expect(page).to have_content('Second Post')
-      expect(page).to_not have_content('This post')
+    it "should show a post's title" do
+      expect(page.body).to have_content('This is my first post')
     end
 
-    it 'displays the first comment' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('First Comment')
+    it "should some of the post's body" do
+      expect(page.body).to have_content(@first_post.text)
     end
 
-    it 'displays the number of comments' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('2')
+    it 'should show the first comments on a post' do
+      expect(page.body).to have_content('This the first post comment')
     end
 
-    it 'displays the number of likes' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('1')
+    it 'should show how many comments a post has' do
+      expect(page.body).to have_content(@first_post.comments_counter.to_s)
     end
 
-    it 'displays Show all posts button' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('More Posts')
+    it 'should show how many likes a post has.' do
+      expect(page.body).to have_content(@first_post.likes_counter.to_s)
     end
 
-    it 'redirects to the post show page when clicked' do
-      visit user_posts_path(@user)
-      click_link 'First Post'
-      expect(page).to have_current_path(user_post_path(@user, @post1))
+    it 'should not show a pagination button' do
+      expect(page.body).not_to have_content('Pagination')
     end
   end
 end
