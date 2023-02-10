@@ -1,26 +1,24 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts
-    @comments = Comment.new
+    @user = User.includes(:posts, posts: [:comments, { comments: [:author] }]).find(params[:user_id])
   end
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.find_by_id(params[:id])
-    @like = Like.new
-    @comments = @post.comments
+    @post = Post.find(params[:id])
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @post = Post.new
+    @post = Post.new(id: current_user.id)
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = Post.new(post_params)
+
     if @post.save
-      redirect_to root_path notice: 'Post created successfully'
+      redirect_to user_path(current_user.id)
+    elsif @like.save
+      redirect_to user_path(current_user), notice: 'like was successfully created.'
     else
       render :new
     end
@@ -29,6 +27,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :text)
+    params.require(:post).permit(:title, :text).merge(author_id: current_user.id)
   end
 end

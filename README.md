@@ -44,17 +44,28 @@
 - install gems bundle i
 - setup database rails db:setup 
 - run rails server rails s.
+- rails c
 
 ### Prerequisites
 
 In order to run this project you need:
 
-- You need to have ruby on rails installed in your computer.
+- Install Ruby
+- Install PostgreSQL
+- Instal Rails gem
 
 ### Setup
 ```
-- To clone the repository run this command - "https://github.com/Gleennkar/My_Blog.git"
-- cd blog-app
+- To clone the repository run this command:
+
+ `git clone https://github.com/Gleennkar/blog_app.git`
+
+
+
+- To access the cloned directory run:
+
+  `cd blog_app`
+
 ```
 ## 👥 Authors <a name="authors"></a>
 
@@ -63,6 +74,11 @@ In order to run this project you need:
 - GitHub: [@Gleennkar](https://github.com/Gleennkar)
 - Twitter: [@gleeny24](https://twitter.com/twitterhandle)
 - LinkedIn: [@gleeny](https://www.linkedin.com/in/gleeny-nkar-aa3917182)
+
+👤 **Lucas Bermudez**
+
+- GitHub: [@oklukeok](https://github.com/oklukeok)
+- LinkedIn: [@Lucas](https://www.linkedin.com/in/lucas-bermudez)
 
 <!-- FUTURE FEATURES -->
 
@@ -100,6 +116,6 @@ I would like to thank to the code reviewers and my partners who are helping all 
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed. 
+This project is [MIT](https://github.com/Gleennkar/blog_app/blob/add_devis_2/LICENSE) licensed. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
