@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe 'User show page', type: :feature do
   describe 'User show page process' do
     before(:each) do
