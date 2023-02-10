@@ -1,4 +1,3 @@
-
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
   before_action :update_allowed_parameters, if: :devise_controller?
@@ -14,3 +13,4 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :bio, :email, :password, :current_password, :role)
     end
   end
+end

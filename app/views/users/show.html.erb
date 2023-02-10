@@ -15,9 +15,9 @@
     </div>
   </div>
   <div class='cont-id-text-counter-shows-users'>
-    <%# <%@user.latest_posts.each do |post|%> %>
+    <%# <%@user.latest_posts.each do |post|%> 
       <div class='container-id-text-counter'>
-        <h4> Post # <%= post.id %> </h4>
+        <h4><%= link_to user_post_path(@user, post) do %>Post #<%= post.id%><%end%><%=post.title%></h4>
         <h4> Text: <%= post.text %> </h4>
         <p> 
           Comments Counter :<%=post.comments_counter %>
@@ -36,4 +36,11 @@
     <button>Create New Post</button>
   <%end%>
   </div>
+  <div class='button-see-all-posts'>
+    <%=link_to edit_user_registration_path do%>
+    <button>Log Out</button>
+  <%end%>
+  </div>
 </section>
+
+
