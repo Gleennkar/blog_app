@@ -5,6 +5,7 @@ ruby '3.1.3'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'devise'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -43,7 +44,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
-gem 'rails-controller-testing'
+# gem 'rails-controller-testing'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -55,7 +56,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   # The RSpec testing framework
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
 
   # Capybara, the library that allows us to interact with the browser using Ruby
   gem 'capybara'
@@ -64,7 +65,6 @@ group :development, :test do
   # of interacting with the browser.
   gem 'webdrivers'
 end
-
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
