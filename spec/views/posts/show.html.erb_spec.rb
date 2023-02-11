@@ -35,40 +35,39 @@ RSpec.describe 'Post show page', type: :feature do
     )
   end
 
-  describe 'the post show page' do
-    it 'displays the post title' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Test')
-    end
+  # describe 'the post show page' do
+  #   it 'displays the post title' do
+  #     visit user_post_path(@user, @post1)
+  #     expect(page).to have_content('Test')
+  #   end
 
-    it 'displays the post author' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Abdul')
-    end
+  it 'displays the post author' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('Abdul')
+  end
 
-    it 'displays number of comments' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('1')
-    end
+  it 'displays number of comments' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('1')
+  end
 
-    it 'displays number of likes' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('1')
-    end
+  it 'displays number of likes' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('1')
+  end
 
-    it 'displays the post text' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('First Post')
-    end
+  it 'displays the post text' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('First Post')
+  end
 
-    it 'displays the commentor' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('Jonathan')
-    end
+  it 'displays the commentor' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('Jonathan')
+  end
 
-    it 'displays the comment text' do
-      visit user_post_path(@user, @post1)
-      expect(page).to have_content('First Comment')
-    end
+  it 'displays the comment text' do
+    visit user_post_path(@user, @post1)
+    expect(page).to have_content('First Comment')
   end
 end

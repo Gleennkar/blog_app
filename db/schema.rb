@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_211209) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "post"
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
@@ -37,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_211209) do
     t.bigint "author_id"
     t.string "title"
     t.text "text"
-    t.integer "comments_counter" , default: 0
+    t.integer "comments_counter", default: 0
     t.integer "likes_counter", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

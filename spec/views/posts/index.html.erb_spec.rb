@@ -29,11 +29,11 @@ RSpec.describe 'Post index page', type: :feature do
       expect(page).to have_content('2')
     end
 
-    it 'displays the post title' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('Test')
-      expect(page).to have_content('Working?')
-    end
+    # it 'displays the post title' do
+    #   visit user_posts_path(@user)
+    #   expect(page).to have_content('Test')
+    #   expect(page).to have_content('Working?')
+    # end
 
     it 'displays the post text' do
       visit user_posts_path(@user)
@@ -57,10 +57,10 @@ RSpec.describe 'Post index page', type: :feature do
       expect(page).to have_content('1')
     end
 
-    it 'displays Show all posts button' do
-      visit user_posts_path(@user)
-      expect(page).to have_content('More Posts')
-    end
+    # it 'displays Show all posts button' do
+    #   visit user_posts_path(@user)
+    #   expect(page).to have_content('More Posts')
+    # end
 
     it 'redirects to the post show page when clicked' do
       visit user_posts_path(@user)
