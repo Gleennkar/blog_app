@@ -1,48 +1,67 @@
 require 'rails_helper'
 
 RSpec.describe 'User show page', type: :feature do
-  describe 'User show page process' do
-    before(:each) do
-      @user = User.create(name: 'Lucca', photo: '',
-                          bio: 'I am a Microverse student', posts_counter: 2)
-      Post.create(author: @user, title: 'My first post', text: 'This is my first post')
-      Post.create(author: @user, title: 'My second post', text: 'This is my second post')
-      Post.create(author: @user, title: 'My third post', text: 'This is my third post')
-      @last_post = Post.create(author: @user, title: 'My fourth post', text: 'This is my fourth post')
+  before(:each) do
+    @user = User.create(
+      name: 'Abdul',
+      bio: 'Aspiring FullStack Dev',
+      photo: 'https://unsplash.com/photos/NDCy2-9JhUs',
+      posts_counter: 2
+    )
 
-      visit user_path(@user.id)
-    end
+    @post1 = Post.create(
+      author: @user,
+      title: 'Test',
+      text: 'First Post',
+      comments_counter: 1,
+      likes_counter: 1
+    )
 
-    it 'should show the user profile picture' do
-      expect(page.body).to include(@user.photo)
-    end
+    @post2 = Post.create(
+      author: @user,
+      title: 'Working?',
+      text: 'Second Post',
+      comments_counter: 1,
+      likes_counter: 2
+    )
+  end
 
-    it 'should show the user username' do
-      expect(page.body).to have_content(@user.name)
-    end
-
-    it 'should show the number of post the user has writen' do
-      expect(page.body).to have_content(@user.posts_counter.to_s)
-    end
-
-    it 'should sho wthe the users bio' do
-      expect(page.body).to have_content(@user.bio)
-    end
-
-    it "should show a button that lets me view all of a user's posts" do
-      expect(page.body).to have_content('See all posts')
-    end
-
-    it "When I click to see all posts, it should redirects me to the user's post's index page" do
-      click_link('See all posts')
-      expect(page).to have_current_path(user_posts_path(@user))
-    end
-
-    it 'displays the last 3 posts' do
+  describe 'the user show page' do
+    it 'displays the user profile picture' do
       visit user_path(@user)
-      expect(page).to have_content('This is my second post')
-      expect(page).to have_content('This is my third post')
-      expect(page).to have_content('This is my fourth post')
+      expect(page).to have_css("img[src*='https://unsplash.com/photos/NDCy2-9JhUs']")
+    end
+
+    it ' displays user username' do
+      visit user_path(@user)
+      expect(page).to have_content('Abdul')
+    end
+
+    it 'shows the number of posts the user has written' do
+      visit user_path(@user)
+      expect(page).to have_content('2')
+    end
+
+    it 'displays the user bio' do
+      visit user_path(@user)
+      expect(page).to have_content('Aspiring FullStack Dev')
+    end
+
+    it 'display the first three posts by the user' do
+      visit user_path(@user)
+      expect(page).to have_content('First Post')
+      expect(page).to have_content('Second Post')
+    end
+
+    it 'displays a button for all user posts' do
+      visit user_path(@user)
+      expect(page).to have_content('See all posts')
+    end
+
+    it 'click to see all posts, it redirects to the user post index page' do
+      visit user_path(@user)
+      click_link 'See all posts'
+      expect(page).to have_current_path(user_posts_path(@user))
     end
   end
 end

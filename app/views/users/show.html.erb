@@ -6,7 +6,7 @@
     </div>
     <div class='cont-name-numbers-post-show-users'>
       <h2 class='user-name-posts-show'> <%= @user.name %></h2>
-      <span class='number-post-posts-show'>Number of posts: <%=@user.posts.count%></span>
+      <span class='number-post-posts-show'>Number of posts: <%=@user.posts_counter%></span>
     </div>
   </div>
   <div>
@@ -15,9 +15,12 @@
     </div>
   </div>
   <div class='cont-id-text-counter-shows-users'>
-    <%# <%@user.latest_posts.each do |post|%> 
+    <% @user.three_most_recent_post.each do |post| %>
       <div class='container-id-text-counter'>
-        <h4><%= link_to user_post_path(@user, post) do %>Post #<%= post.id%><%end%><%=post.title%></h4>
+        <%= link_to user_post_path(@user, post) do %>
+        Post #<%= post.id%>
+      <%end%>
+        <%=post.title%>
         <h4> Text: <%= post.text %> </h4>
         <p> 
           Comments Counter :<%=post.comments_counter %>
@@ -37,7 +40,7 @@
   <%end%>
   </div>
   <div class='button-see-all-posts'>
-    <%=link_to edit_user_registration_path do%>
+    <%=link_to users_path do%>
     <button>Log Out</button>
   <%end%>
   </div>

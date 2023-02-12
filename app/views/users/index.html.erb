@@ -1,5 +1,4 @@
 <h1>Here is a list of posts for a given Users</h1>
-<%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false }  %>
 <h2> List of name's</h2>
 <section class='section-main'>
   <% @users.each do |user| %>
@@ -10,7 +9,7 @@
         </div>
         <div class='container-users'>
           <h2 class='user-name'> <%= user.name %></h2>
-          <span class='number-post'>Number of posts: <%=user.posts.count%></span>
+          <span class='number-post'>Number of posts: <%=user.posts_counter%></span>
         </div>
     </div>
     <%end%>

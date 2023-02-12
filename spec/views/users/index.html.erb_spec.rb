@@ -2,33 +2,45 @@ require 'rails_helper'
 
 RSpec.describe 'User index', type: :feature do
   before(:each) do
-    @user = User.create(name: 'Lucca', photo: 'https://avatars.githubusercontent.com/u/108556234?v=4',
-                        bio: 'Teacher form Mexico.', posts_counter: 1)
+    @user1 = User.create(
+      name: 'Abdul',
+      bio: 'Aspiring FullStack Dev',
+      photo: 'https://unsplash.com/photos/NDCy2-9JhUs',
+      posts_counter: 2
+    )
+
+    @user2 = User.create(
+      name: 'Joy',
+      bio: 'FullStack Dev',
+      photo: 'https://unsplash.com/photos/hodKTZow_Kk',
+      posts_counter: 3
+    )
     visit users_path
   end
 
-  describe 'users index page' do
-    # Display all the usernames test
-    it 'displays the created users' do
-      expect(page).to have_content('Lucca')
-      expect(page).to have_content('Lilly')
-      expect(page).to have_content('Tom')
+  describe 'user index paged' do
+    it 'displays correct username' do
+      expect(page).to have_content('Abdul')
+      expect(page).to_not have_content('Caicedo')
     end
 
-    # Profile picture test
-    it 'shows the right photo' do
-      expect(page.body).to include(@user.photo)
+    it 'shows user profile photo' do
+      expect(page).to have_css("img[src*='https://unsplash.com/photos/NDCy2-9JhUs']")
+      expect(page).to have_css("img[src*='https://unsplash.com/photos/hodKTZow_Kk']")
     end
 
-    # Number of posts test
-    it 'displays the right Number of posts' do
-      expect(page).to have_content('Number of posts: 0')
-      expect(page).to have_content('Number of posts: 1')
+    it 'shows the correct number of posts' do
+      expect(page).to have_content('Number of posts: 2')
+      expect(page).to have_content('Number of posts: 3')
     end
 
-    it "When I click on a user, should redirected to that user's show page." do
-      click_link('Lilly')
-      expect(page).to have_current_path(user_path(7))
+    it 'shows the user_path when clicked' do
+      click_link 'Abdul'
+      expect(page).to have_current_path(user_path(@user1))
     end
+
+    # it 'it shows the bio in show path' do
+    #   expect(page).to have_content(@user1.bio)
+    # end
   end
 end
